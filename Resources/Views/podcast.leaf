@@ -1,0 +1,15 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<title>#(page_title)</title>
+</head>
+
+<body>
+<h1>#(page_title)</h1>
+<p>Podcast works!</p>
+<p>This page was rendered in #(executeTime) seconds</p>
+</body>
+</html>
