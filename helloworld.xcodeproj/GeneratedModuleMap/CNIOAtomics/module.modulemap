@@ -1,4 +1,4 @@
 module CNIOAtomics {
-    umbrella "/Users/Inuk/helloworld/.build/checkouts/swift-nio.git-3108475404973543938/Sources/CNIOAtomics/include"
+    umbrella "/Users/Inuk/Vapor/Podcatch/.build/checkouts/swift-nio.git-3108475404973543938/Sources/CNIOAtomics/include"
     export *
 }
