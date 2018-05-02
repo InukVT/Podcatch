@@ -4,12 +4,17 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/style.css">
-<title>#(page_title)</title>
+<title>#(title)</title>
 </head>
 
 <body>
-<h1>#(page_title)</h1>
-<p>Podcast works!</p>
-<p>This page was rendered in #(executeTime) seconds</p>
+<h1>#(title) by the lovly #(author)</h1>
+<img src="#(image)" alt="#(title)">
+#for(episode in episodes) {
+    <p>#(episode.title) is a friend of you.</p>
+	<audio controls preload="none">
+		<source src="#(episode.media)" type="#(episode.type)">
+	</audio>
+}
 </body>
 </html>
