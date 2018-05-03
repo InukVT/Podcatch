@@ -3,6 +3,8 @@ image: swift:4.1
 pipelines:
   default:
     - step:
+        name: Run test
+        deployment: test
         script: 
           - swift package resolve
           - swift package clean
