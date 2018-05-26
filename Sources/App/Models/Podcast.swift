@@ -7,8 +7,9 @@
 
 import Foundation
 import Vapor
+import XMLCoding
 
-struct PodcastViewParameters: Codable {
+struct Podcast: Codable {
 	/// The title of the _Podcast_
 	let title: String?
 	/// The author, this does not necessarily mean the hosts, as some networks places the network name here.
@@ -26,5 +27,27 @@ struct PodcastViewParameters: Codable {
 		let media: String
 		/// Is it a video or audio? Is it MP3, OGG, MP4, MKV, etc.? This is the media type of the episode.
 		let type: String
+	}
+}
+
+extension Podcast {
+	static func retrieveRSS(data: Data) -> Podcast? {
+		let decoder = XMLDecoder()
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+		decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+		let rss: Podcast?
+
+		do {
+			rss = try decoder.decode(Podcast.self, from: data)
+		} catch {
+			print(error)
+
+			rss = nil
+		}
+
+		return rss
 	}
 }

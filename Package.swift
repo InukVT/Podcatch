@@ -8,11 +8,11 @@ let package = Package(
 	dependencies: [
 		.package(url: "https://github.com/vapor/vapor.git", "3.0.0-rc"..<"4.0.0"),
 		.package(url: "https://github.com/vapor/fluent-sqlite.git", "3.0.0-rc"..<"4.0.0"),
-		.package(url: "https://github.com/drmohundro/SWXMLHash", "4.0.0"..<"5.0.0"),
-		.package(url: "https://github.com/vapor/leaf.git", "3.0.0-rc"..<"4.0.0")
+		.package(url: "https://github.com/vapor/leaf.git", "3.0.0-rc"..<"4.0.0"),
+		.package(url: "https://github.com/LiveUI/XMLCoding/", "0.1.0"..<"1.0.0")
 	],
 	targets: [
-		.target(name: "App", dependencies: ["FluentSQLite", "Vapor", "SWXMLHash", "Leaf"]),
+		.target(name: "App", dependencies: ["FluentSQLite", "Vapor", "Leaf", "XMLCoding"]),
 		.target(name: "Run", dependencies: ["App"]),
 		.testTarget(name: "AppTests", dependencies: ["App"])
 	]

@@ -4,11 +4,11 @@ import Leaf
 import SWXMLHash
 
 final class PodController {	
-	func index(_ req: Request) throws -> Future<View>
+	/*func index(_ req: Request) throws -> Future<View>
 	{
 		let leaf = try req.make(LeafRenderer.self)
-		return leaf.render("noCast")
-	}
+		return //leaf.render("noCast")
+	}*/
 	func podcast(_ req: Request) throws -> Future<View>
 	{
 		//Generating the relay FM URL!
@@ -18,22 +18,23 @@ final class PodController {
 		return try ParseRSS().xml(req: req, feed: rss).flatMap(to: View.self, { xml in
 			let leaf = try req.make(LeafRenderer.self)
 
-			let podcast = xml["rss"]["channel"]["title"].element?.text
+			//let podcast = xml["rss"]["channel"]["title"].element?.text
 			//print("You've reached the \(podcast ?? "Not Existing") podcast")
-			let author = xml["rss"]["channel"]["itunes:author"][0].element?.text
-			let image = xml["rss"]["channel"]["itunes:image"][0].element?.attribute(by: "href")?.text
+			//let author = xml["rss"]["channel"]["itunes:author"][0].element?.text
+			//let image = xml["rss"]["channel"]["itunes:image"][0].element?.attribute(by: "href")?.text
 
-			var episodes: [PodcastViewParameters.Episode] = []
-			for elem in xml["rss"]["channel"]["item"].all {
-				let title = elem["title"].element!.text
-				let file = (elem["enclosure"].element?.attribute(by: "url")?.text)!
-				let type = (elem["enclosure"].element?.attribute(by: "type")?.text)!
-				episodes.append(PodcastViewParameters.Episode(title: title, media: file, type: type))
-				print("\(title) \n")
-			}
+		//	var episodes: [PodcastViewParameters.Episode] = []
+		//	for elem in xml["rss"]["channel"]["item"].all {
+		//		let title = elem["title"].element!.text
+		//		let file = (elem["enclosure"].element?.attribute(by: "url")?.text)!
+		//		let type = (elem["enclosure"].element?.attribute(by: "type")?.text)!
+		//		episodes.append(PodcastViewParameters.Episode(title: title, media: file, type: type))
+		//		print("\(title) \n")
+		//	}
 
-			let parameters = PodcastViewParameters(title: podcast, author: author, image: image, episodes: episodes)
-			return leaf.render("podcast", parameters)
+
+			let context = Podcast
+			return try leaf.render("podcast", context)
 		})
 	}
     
